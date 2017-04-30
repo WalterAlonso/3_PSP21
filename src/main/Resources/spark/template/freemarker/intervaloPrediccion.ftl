@@ -19,51 +19,49 @@
 		<th>Parameter</th>
 		<th>Actual Value</th>		
 	</tr>	
-	<#list datos as modeloIntervaloPrediccion>		
-			<tr >		
-				<td rowspan="9">TEST ${numeroTest}</td> 
-				<td>r (x,y) </td>
-				<td>
-					<#if modeloIntervaloPrediccion.darNoPosibleCalcular() == true >
-						n/a					
-					<#else>
-						${modeloIntervaloPrediccion.darRSubXY()}
-					</#if>
-				</td> 
-			</tr>
+	<tr >
+		<td rowspan="9">TEST ${numeroTest}</td> 
+			<td>r (x,y) </td>
+			<td>
+				<#if datos.darNoPosibleCalcular() == true >
+					n/a					
+				<#else>
+					${datos.darRSubXY()}
+				</#if>
+			</td> 
+	</tr>
 			<tr >		
 				<td>r (2) </td> 	
-				<td>${modeloIntervaloPrediccion.darRalCuadrado()}</td> 
+				<td>${datos.darRalCuadrado()}</td> 
 			</tr>
 			<tr >		
 				<td>Significancia</td> 	
-				<td>${modeloIntervaloPrediccion.darSignificancia()}</td> 
+				<td>${datos.darSignificancia()}</td> 
 			</tr>	
 			<tr >		
 				<td>B0</td> 		
-				<td>${modeloIntervaloPrediccion.darBSubCero()}</td> 
+				<td>${datos.darBSubCero()}</td> 
 			</tr>		
 			<tr >		
 				<td>B1</td> 		
-				<td>${modeloIntervaloPrediccion.darBSubUno()}</td> 
+				<td>${datos.darBSubUno()}</td> 
 			</tr>
 			<tr >		
 				<td>Yk</td> 		
-				<td>${modeloIntervaloPrediccion.darYSubK()}</td> 
+				<td>${datos.darYSubK()}</td> 
 			</tr>
 			<tr >		
 				<td>Rango</td> 		
-				<td>${modeloIntervaloPrediccion.darRango()}</td> 
+				<td>${datos.darRango()}</td> 
 			</tr>
 			<tr >		
 				<td>UPI</td> 		
-				<td>${modeloIntervaloPrediccion.darUpi()}</td> 
+				<td>${datos.darUpi()}</td> 
 			</tr>
 			<tr >		
 				<td>LPI</td> 		
-				<td>${modeloIntervaloPrediccion.darLpi()}</td> 
+				<td>${datos.darLpi()}</td> 
 			</tr>
-	</#list>
   </table>
   
   VALORES ESPERADOS
@@ -73,51 +71,49 @@
 		<th>Parameter</th>
 		<th>Valor esperado</th>		
 	</tr>	
-	<#list datosEsperado as modeloIntervaloPrediccion>		
 			<tr >		
 				<td rowspan="9">TEST ${numeroTest}</td> 
 				<td>r (x,y) </td>
 				<td>
-					<#if modeloIntervaloPrediccion.darNoPosibleCalcular() == true >
+					<#if datosEsperado.darNoPosibleCalcular() == true >
 						n/a					
 					<#else>
-						${modeloIntervaloPrediccion.darRSubXY()}
+						${datosEsperado.darRSubXY()}
 					</#if>
 				</td> 
 			</tr>
 			<tr >		
 				<td>r (2) </td> 	
-				<td>${modeloIntervaloPrediccion.darRalCuadrado()}</td> 
+				<td>${datosEsperado.darRalCuadrado()}</td> 
 			</tr>
 			<tr >		
 				<td>Significancia</td> 	
-				<td>${modeloIntervaloPrediccion.darSignificancia()}</td> 
+				<td>${datosEsperado.darSignificancia()}</td> 
 			</tr>	
 			<tr >		
 				<td>B0</td> 		
-				<td>${modeloIntervaloPrediccion.darBSubCero()}</td> 
+				<td>${datosEsperado.darBSubCero()}</td> 
 			</tr>		
 			<tr >		
 				<td>B1</td> 		
-				<td>${modeloIntervaloPrediccion.darBSubUno()}</td> 
+				<td>${datosEsperado.darBSubUno()}</td> 
 			</tr>
 			<tr >		
 				<td>Yk</td> 		
-				<td>${modeloIntervaloPrediccion.darYSubK()}</td> 
+				<td>${datosEsperado.darYSubK()}</td> 
 			</tr>
 			<tr >		
 				<td>Rango</td> 		
-				<td>${modeloIntervaloPrediccion.darRango()}</td> 
+				<td>${datosEsperado.darRango()}</td> 
 			</tr>
 			<tr >		
 				<td>UPI</td> 		
-				<td>${modeloIntervaloPrediccion.darUpi()}</td> 
+				<td>${datosEsperado.darUpi()}</td> 
 			</tr>
 			<tr >		
 				<td>LPI</td> 		
-				<td>${modeloIntervaloPrediccion.darLpi()}</td> 
-			</tr>
-	</#list>
+				<td>${datosEsperado.darLpi()}</td> 
+			</tr>	
   </table>
 </div>
 <script type="text/javascript">

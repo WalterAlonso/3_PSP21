@@ -35,46 +35,20 @@ public class CalculoIntervaloPrediccionWeb {
 		get("/", (req, res) -> {
 			Map<String, Object> attributes = new HashMap<>();
 			try {
-				ModelViewIntervaloPrediccion model = new ModelViewIntervaloPrediccion();				
 				String rutaArchivo = "target/classes/ArchivoProcesar/ArchivoCargaIntervaloPrediccion.txt";
 				ArrayList<ModelViewArchivoIntervaloPrediccion> datos = fachada.cargarDatosInicialesIntervaloPrediccion(rutaArchivo);
 				MetodoA metodoA = new MetodoA(datos, TipoEstimacion.EstimacionLOC, 386);  
 				fachada.procesarIntervaloPrediccion(1.0, 0.00001, 10, 0.5, metodoA);
-				model=fachada.darModeloIntervaloPrediccion();
-				
+								
 				ModelViewIntervaloPrediccion datosEsperados = new ModelViewIntervaloPrediccion();
 				datosEsperados.asignarNoPosibleCalcular(false);
 				datosEsperados.asignarRSubXY(0.954496574);
 				datosEsperados.asignarRSubXY(0.91106371);
-/*
-assertFalse( "Valor de NoPosibleCalcular debe ser false", model.darNoPosibleCalcular());
-    		assertEquals( "Valor de r(x,y) debe ser 0.954496574", 0.954496574, model.darRSubXY(), 0.00001);
-    		assertEquals( "Valor de r(2) debe ser 0.91106371", 0.91106371, model.darRalCuadrado(), 0.00001);
-    		assertEquals( "Valor de significancia debe ser 0.000077517", 0.000077517, model.darSignificancia(), 0.00001);
-    		assertEquals( "Valor de B0 debe ser -22.55253275", -22.55253275, model.darBSubCero(), 0.00001);
-    		assertEquals( "Valor de B1 debe ser 1.727932426", 1.727932426, model.darBSubUno(), 0.00001);
-			
-			
-    		assertEquals( "Valor de yk debe ser 644.4293838", 644.4293838, model.darYSubK(), 0.00001);
-    		assertEquals( "Valor de Rango debe ser 230.0017197", 230.0017197, model.darRango(), 0.00001);
-    		assertEquals( "Valor de UPI debe ser 874.4311035", 874.4311035, model.darUpi(), 0.00001);
-    		assertEquals( "Valor de LPI debe ser 414.427664", 414.427664, model.darLpi(), 0.00001); 	
-    		
-				*/
-				/*MetodoA metodoA2 = new MetodoA(datos, TipoEstimacion.EstimacionTiempoDesarrollo, 386);  
-				fachada.procesarIntervaloPrediccion(1.0, 0.00001, 10, 0.5, metodoA2);
-				model.add(fachada.darModeloIntervaloPrediccion());
-				
-				rutaArchivo = "target/classes/ArchivoProcesar/ArchivoCargaIntervaloPrediccionProgramaTresSeis.txt";
-				datos = fachada.cargarDatosInicialesIntervaloPrediccion(rutaArchivo);
-								
-				MetodoA metodoA3 = new MetodoA(datos, TipoEstimacion.EstimacionLOC, 386);  
-				fachada.procesarIntervaloPrediccion(1.0, 0.00001, 10, 0.5, metodoA3);
-				model.add(fachada.darModeloIntervaloPrediccion());
-				
-				MetodoA metodoA4 = new MetodoA(datos, TipoEstimacion.EstimacionTiempoDesarrollo, 386);  
-				fachada.procesarIntervaloPrediccion(1.0, 0.00001, 10, 0.5, metodoA4);
-				model.add(fachada.darModeloIntervaloPrediccion());*/
+				datosEsperados.asinarSignificancia(0.000077517);
+				datosEsperados.asignarBSubCero(-22.55253275);
+				datosEsperados.asignarBSubUno(1.727932426);
+				datosEsperados.asignarYSubK(644.4293838);
+				datosEsperados.asignarRango(230.0017197);				
 				
 				return fachada.mostrarCalculosWeb(1, datosEsperados);				
 			} catch (Exception ex) {
@@ -86,19 +60,22 @@ assertFalse( "Valor de NoPosibleCalcular debe ser false", model.darNoPosibleCalc
 		get("/test2", (req, res) -> {
 			Map<String, Object> attributes = new HashMap<>();
 			try {
-				ModelViewIntervaloPrediccion model = new ModelViewIntervaloPrediccion();				
 				String rutaArchivo = "target/classes/ArchivoProcesar/ArchivoCargaIntervaloPrediccion.txt";
 				ArrayList<ModelViewArchivoIntervaloPrediccion> datos = fachada.cargarDatosInicialesIntervaloPrediccion(rutaArchivo);
 				
 				MetodoA metodoA = new MetodoA(datos, TipoEstimacion.EstimacionLOC, 386);  
 				fachada.procesarIntervaloPrediccion(1.0, 0.00001, 10, 0.5, metodoA);
-				model = fachada.darModeloIntervaloPrediccion();
-								
+				
 				ModelViewIntervaloPrediccion datosEsperados = new ModelViewIntervaloPrediccion();
 				datosEsperados.asignarNoPosibleCalcular(false);
-				datosEsperados.asignarRSubXY(0.954496574);
-				datosEsperados.asignarRSubXY(0.91106371);
-				
+				datosEsperados.asignarRSubXY(0.933306898);
+				datosEsperados.asignarRSubXY(0.871061766);
+				datosEsperados.asinarSignificancia(0.0000798203);
+				datosEsperados.asignarBSubCero(-4.038881575);
+				datosEsperados.asignarBSubUno(0.16812665);
+				datosEsperados.asignarYSubK(60.85800528);
+				datosEsperados.asignarRango(27.55764748);
+	    						
 				return fachada.mostrarCalculosWeb(2, datosEsperados);				
 			} catch (Exception ex) {
 				attributes.put("message", ex.getMessage());
@@ -106,41 +83,42 @@ assertFalse( "Valor de NoPosibleCalcular debe ser false", model.darNoPosibleCalc
 			}
 		}, new FreeMarkerEngine());
 		
-		/*get("/test3", (req, res) -> {
+		get("/test3", (req, res) -> {
 			Map<String, Object> attributes = new HashMap<>();
 			try {
-				ModelViewIntervaloPrediccion model = new ModelViewIntervaloPrediccion();				
-				String rutaArchivo = "target/classes/ArchivoProcesar/ArchivoCargaIntervaloPrediccion.txt";
+				String rutaArchivo = "target/classes/ArchivoProcesar/ArchivoCargaIntervaloPrediccionProgramaTresSeis.txt";
 				ArrayList<ModelViewArchivoIntervaloPrediccion> datos = fachada.cargarDatosInicialesIntervaloPrediccion(rutaArchivo);
-				
-				MetodoA metodoA = new MetodoA(datos, TipoEstimacion.EstimacionLOC, 386);  
-				fachada.procesarIntervaloPrediccion(1.0, 0.00001, 10, 0.5, metodoA);
-				model = fachada.darModeloIntervaloPrediccion();
-				
-				
-				
-				MetodoA metodoA2 = new MetodoA(datos, TipoEstimacion.EstimacionTiempoDesarrollo, 386);  
-				fachada.procesarIntervaloPrediccion(1.0, 0.00001, 10, 0.5, metodoA2);
-				model.add(fachada.darModeloIntervaloPrediccion());
-				
-				rutaArchivo = "target/classes/ArchivoProcesar/ArchivoCargaIntervaloPrediccionProgramaTresSeis.txt";
-				datos = fachada.cargarDatosInicialesIntervaloPrediccion(rutaArchivo);
 								
 				MetodoA metodoA3 = new MetodoA(datos, TipoEstimacion.EstimacionLOC, 386);  
 				fachada.procesarIntervaloPrediccion(1.0, 0.00001, 10, 0.5, metodoA3);
-				model.add(fachada.darModeloIntervaloPrediccion());
 				
-				MetodoA metodoA4 = new MetodoA(datos, TipoEstimacion.EstimacionTiempoDesarrollo, 386);  
-				fachada.procesarIntervaloPrediccion(1.0, 0.00001, 10, 0.5, metodoA4);
-				model.add(fachada.darModeloIntervaloPrediccion());
-				
-				return fachada.mostrarCalculosWeb();				
+				ModelViewIntervaloPrediccion datosEsperados = new ModelViewIntervaloPrediccion();
+				datosEsperados.asignarNoPosibleCalcular(true);
+								
+				return fachada.mostrarCalculosWeb(3, datosEsperados);				
 			} catch (Exception ex) {
 				attributes.put("message", ex.getMessage());
 				return new ModelAndView(attributes, "error.ftl");
 			}
-		}, new FreeMarkerEngine());
-		*/
+		}, new FreeMarkerEngine());		
+		get("/test4", (req, res) -> {
+			Map<String, Object> attributes = new HashMap<>();
+			try {
+				String rutaArchivo = "target/classes/ArchivoProcesar/ArchivoCargaIntervaloPrediccionProgramaTresSeis.txt";
+				ArrayList<ModelViewArchivoIntervaloPrediccion> datos = fachada.cargarDatosInicialesIntervaloPrediccion(rutaArchivo);
+								
+				MetodoA metodoA4 = new MetodoA(datos, TipoEstimacion.EstimacionTiempoDesarrollo, 386);  
+				fachada.procesarIntervaloPrediccion(1.0, 0.00001, 10, 0.5, metodoA4);
+								
+				ModelViewIntervaloPrediccion datosEsperados = new ModelViewIntervaloPrediccion();
+				datosEsperados.asignarNoPosibleCalcular(true);
+				
+				return fachada.mostrarCalculosWeb(4, datosEsperados);				
+			} catch (Exception ex) {
+				attributes.put("message", ex.getMessage());
+				return new ModelAndView(attributes, "error.ftl");
+			}
+		}, new FreeMarkerEngine());		
 		// Request para ver las pruebas de archivo
 		get("/PruebasArchivo", (request, response) -> {
 			Map<String, Object> attributes = new HashMap<>();
