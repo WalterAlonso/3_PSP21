@@ -186,8 +186,10 @@ public class Fachada {
 	 * Muestra los cálculos web
 	 * @return los datos y la vista de los datos que se van a desplegar.
 	 */
-	public ModelAndView mostrarCalculosWeb() {
+	public ModelAndView mostrarCalculosWeb(int numeroTest, ModelViewIntervaloPrediccion modelEsperado) {
 		Map<String, Object> attributes = new HashMap<>();
+		attributes.put("datosEsperado", modelEsperado);
+		attributes.put("numeroTest", numeroTest);
 		attributes.put("datos", this.modeloIntervaloPrediccion);		
 		return new ModelAndView(attributes, "intervaloPrediccion.ftl");
 	}
