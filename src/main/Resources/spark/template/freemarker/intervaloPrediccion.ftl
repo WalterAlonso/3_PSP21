@@ -8,113 +8,168 @@
   <#include "nav.ftl">
 <div class="jumbotron text-center">
   <div class="container">    
-    <h3>CALCULO DE INTERVALO PREDICCI&OCUTE;N - TEST ${numeroTest}</h3>
+    <h3>CALCULO DE INTERVALO PREDICCION - TEST ${numeroTest}</h3>
   </div>
 </div>
 <div class="container">
-	VALORES DADOS
   <table class="table table-striped">
 	<tr>
 		<th>Test</th>
 		<th>Parameter</th>
-		<th>Actual Value</th>		
+		<th>Actual Value</th>
+		<th>Expected Value</th>		
 	</tr>	
 	<tr >
-		<td rowspan="9">TEST ${numeroTest}</td> 
+			<td rowspan="9">TEST ${numeroTest}</td> 
 			<td>r (x,y) </td>
 			<td>
 				<#if datos.darNoPosibleCalcular() == true >
 					n/a					
 				<#else>
-					${datos.darRSubXY()}
+					${datos.darRSubXY()?string("####.##########")}
 				</#if>
 			</td> 
-	</tr>
+			<td>
+					<#if datosEsperado.darNoPosibleCalcular() == true >
+						n/a					
+					<#else>
+						${datosEsperado.darRSubXY()?string("####.##########")}
+					</#if>
+				</td> 
+		</tr>
 			<tr >		
 				<td>r (2) </td> 	
-				<td>${datos.darRalCuadrado()}</td> 
-			</tr>
-			<tr >		
-				<td>Significancia</td> 	
-				<td>${datos.darSignificancia()}</td> 
-			</tr>	
-			<tr >		
-				<td>B0</td> 		
-				<td>${datos.darBSubCero()}</td> 
-			</tr>		
-			<tr >		
-				<td>B1</td> 		
-				<td>${datos.darBSubUno()}</td> 
-			</tr>
-			<tr >		
-				<td>Yk</td> 		
-				<td>${datos.darYSubK()}</td> 
-			</tr>
-			<tr >		
-				<td>Rango</td> 		
-				<td>${datos.darRango()}</td> 
-			</tr>
-			<tr >		
-				<td>UPI</td> 		
-				<td>${datos.darUpi()}</td> 
-			</tr>
-			<tr >		
-				<td>LPI</td> 		
-				<td>${datos.darLpi()}</td> 
-			</tr>
-  </table>
-  
-  VALORES ESPERADOS
-  <table class="table table-striped">
-	<tr>
-		<th>Test</th>
-		<th>Parameter</th>
-		<th>Valor esperado</th>		
-	</tr>	
-			<tr >		
-				<td rowspan="9">TEST ${numeroTest}</td> 
-				<td>r (x,y) </td>
+				<td>
+					<#if datos.darNoPosibleCalcular() == true >
+						n/a					
+					<#else>
+						${datos.darRalCuadrado()?string("####.##########")}
+					</#if>
+				</td> 
 				<td>
 					<#if datosEsperado.darNoPosibleCalcular() == true >
 						n/a					
 					<#else>
-						${datosEsperado.darRSubXY()}
+						${datosEsperado.darRalCuadrado()?string("####.##########")}
 					</#if>
 				</td> 
 			</tr>
 			<tr >		
-				<td>r (2) </td> 	
-				<td>${datosEsperado.darRalCuadrado()}</td> 
-			</tr>
-			<tr >		
 				<td>Significancia</td> 	
-				<td>${datosEsperado.darSignificancia()}</td> 
+				<td>
+					<#if datos.darNoPosibleCalcular() == false >										
+						${datos.darSignificancia()?string("####.##########")}						
+					</#if>
+				</td> 
+				<td>
+					<#if datosEsperado.darNoPosibleCalcular() == false >						
+						${datosEsperado.darSignificancia()?string("####.##########")}					
+					</#if>
+				</td> 
 			</tr>	
 			<tr >		
 				<td>B0</td> 		
-				<td>${datosEsperado.darBSubCero()}</td> 
+				<td>
+					<#if datos.darNoPosibleCalcular() == true >
+						n/a					
+					<#else>
+						${datos.darBSubCero()?string("####.##########")}
+					</#if>
+				</td> 
+				<td>
+					<#if datosEsperado.darNoPosibleCalcular() == true >
+						n/a					
+					<#else>
+						${datosEsperado.darBSubCero()?string("####.##########")}
+					</#if>
+				</td> 
 			</tr>		
 			<tr >		
-				<td>B1</td> 		
-				<td>${datosEsperado.darBSubUno()}</td> 
+				<td>B1</td> 
+				<td>
+					<#if datos.darNoPosibleCalcular() == true >
+						n/a					
+					<#else>
+						${datos.darBSubUno()?string("####.##########")}
+					</#if>
+				</td> 
+<td>
+					<#if datosEsperado.darNoPosibleCalcular() == true >
+						n/a					
+					<#else>
+						${datosEsperado.darBSubUno()?string("####.##########")}
+					</#if>
+				</td>				
 			</tr>
 			<tr >		
-				<td>Yk</td> 		
-				<td>${datosEsperado.darYSubK()}</td> 
+				<td>Yk</td> 
+				<td>
+					<#if datos.darNoPosibleCalcular() == true >
+						n/a					
+					<#else>
+						${datos.darYSubK()?string("####.##########")}
+					</#if>
+				</td> 
+<td>
+					<#if datosEsperado.darNoPosibleCalcular() == true >
+						n/a					
+					<#else>
+						${datosEsperado.darYSubK()?string("####.##########")}
+					</#if>
+				</td> 					
 			</tr>
 			<tr >		
 				<td>Rango</td> 		
-				<td>${datosEsperado.darRango()}</td> 
+				<td>
+					<#if datos.darNoPosibleCalcular() == true >
+						n/a					
+					<#else>
+						${datos.darRango()?string("####.##########")}
+					</#if>
+				</td> 
+				<td>
+					<#if datosEsperado.darNoPosibleCalcular() == true >
+						n/a					
+					<#else>
+						${datosEsperado.darRango()?string("####.##########")}
+					</#if>
+				</td> 
 			</tr>
 			<tr >		
-				<td>UPI</td> 		
-				<td>${datosEsperado.darUpi()}</td> 
+				<td>UPI</td>
+				<td>
+					<#if datos.darNoPosibleCalcular() == true >
+						n/a					
+					<#else>
+						${datos.darUpi()?string("####.##########")}
+					</#if>
+				</td> 
+				<td>
+					<#if datosEsperado.darNoPosibleCalcular() == true >
+						n/a					
+					<#else>
+						${datosEsperado.darUpi()?string("####.##########")}
+					</#if>
+				</td> 
 			</tr>
 			<tr >		
-				<td>LPI</td> 		
-				<td>${datosEsperado.darLpi()}</td> 
-			</tr>	
-  </table>
+				<td>LPI</td> 
+				<td>
+					<#if datos.darNoPosibleCalcular() == true >
+						n/a					
+					<#else>
+						${datos.darLpi()?string("####.##########")}
+					</#if>
+				</td> 
+				<td>
+					<#if datosEsperado.darNoPosibleCalcular() == true >
+						n/a					
+					<#else>
+						${datosEsperado.darLpi()?string("####.##########")}
+					</#if>
+				</td> 
+			</tr>
+  </table>  
 </div>
 <script type="text/javascript">
     $(document).ready(function () {

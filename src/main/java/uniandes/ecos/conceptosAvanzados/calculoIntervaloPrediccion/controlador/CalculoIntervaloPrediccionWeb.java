@@ -43,7 +43,7 @@ public class CalculoIntervaloPrediccionWeb {
 				ModelViewIntervaloPrediccion datosEsperados = new ModelViewIntervaloPrediccion();
 				datosEsperados.asignarNoPosibleCalcular(false);
 				datosEsperados.asignarRSubXY(0.954496574);
-				datosEsperados.asignarRSubXY(0.91106371);
+				datosEsperados.asignarRalCuadrado(0.91106371);
 				datosEsperados.asinarSignificancia(0.000077517);
 				datosEsperados.asignarBSubCero(-22.55253275);
 				datosEsperados.asignarBSubUno(1.727932426);
@@ -63,13 +63,13 @@ public class CalculoIntervaloPrediccionWeb {
 				String rutaArchivo = "target/classes/ArchivoProcesar/ArchivoCargaIntervaloPrediccion.txt";
 				ArrayList<ModelViewArchivoIntervaloPrediccion> datos = fachada.cargarDatosInicialesIntervaloPrediccion(rutaArchivo);
 				
-				MetodoA metodoA = new MetodoA(datos, TipoEstimacion.EstimacionLOC, 386);  
+				MetodoA metodoA = new MetodoA(datos, TipoEstimacion.EstimacionTiempoDesarrollo, 386);  
 				fachada.procesarIntervaloPrediccion(1.0, 0.00001, 10, 0.5, metodoA);
 				
 				ModelViewIntervaloPrediccion datosEsperados = new ModelViewIntervaloPrediccion();
 				datosEsperados.asignarNoPosibleCalcular(false);
 				datosEsperados.asignarRSubXY(0.933306898);
-				datosEsperados.asignarRSubXY(0.871061766);
+				datosEsperados.asignarRalCuadrado(0.871061766);
 				datosEsperados.asinarSignificancia(0.0000798203);
 				datosEsperados.asignarBSubCero(-4.038881575);
 				datosEsperados.asignarBSubUno(0.16812665);
